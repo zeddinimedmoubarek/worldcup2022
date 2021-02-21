@@ -23,6 +23,10 @@ public class UserController {
 	public List<User> getUsers(){
 		return (List<User>) userRepository.findAll();
 	}
+	@GetMapping("/getuser/{id}")
+	public User getUser(Long id) {
+		return userRepository.findUserById(id);
+	}
 	
 	@PostMapping("/adduser")
 	void addUser(@RequestBody User user) {
