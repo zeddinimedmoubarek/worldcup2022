@@ -8,27 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import tn.rnu.isi.worldcup.entities.Matche;
+import tn.rnu.isi.worldcup.repository.MatcheRepository;
 
-import tn.rnu.isi.worldcup.entities.Match;
-import tn.rnu.isi.worldcup.repository.MatchRepository;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class MatchController {
+public class MatcheController {
 	@Autowired
-	private MatchRepository matchRepository;
+	private MatcheRepository matcheRepository;
 	
 	@GetMapping("/matchs")
-	public List<Match> getMatchs(){
-		return (List<Match>) matchRepository.findAll();
+	public List<Matche> getMatchs(){
+		return (List<Matche>) matcheRepository.findAll();
 	}
 	@GetMapping("/getmatch/{id}")
-	public Match getMatch(Long id) {
-		return matchRepository.findMatchById(id);
+	public Matche getMatch(Long id) {
+		return matcheRepository.findMatchById(id);
 	}
 	
 	@PostMapping("/addmatch")
-	void addMatch(@RequestBody Match match) {
-		matchRepository.save(match);
+	void addEquipe(@RequestBody Matche match) {
+		matcheRepository.save(match);
 	}
 }

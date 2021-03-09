@@ -14,8 +14,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @DynamicUpdate
 @Entity
-@Table(name = "match")
-public class Match implements Serializable{
+@Table(name = "matche")
+public class Matche implements Serializable{
 	private static final long serialVersionUID = 1L;
 		
 		@Id
@@ -26,11 +26,11 @@ public class Match implements Serializable{
 		private int nbr_buts;
 		private int heure_match;
 		//constructeur sans parametres
-		public Match() {
+		public Matche() {
 			super();
 		}
 		//constructeur avec tous les parametres
-		public Match(Long id, Date date_match, int nbr_buts, int heure_match) {
+		public Matche(Long id, Date date_match, int nbr_buts, int heure_match) {
 			super();
 			this.id = id;
 			this.date_match = date_match;
