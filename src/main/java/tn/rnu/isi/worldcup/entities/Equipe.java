@@ -1,6 +1,7 @@
 package tn.rnu.isi.worldcup.entities;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ private static final long serialVersionUID = 1L;
 	private String nom_equipe;
 	private String pays;
 	private int nbr_joueurs;
+	private Blob image_equipe;
 	public Equipe() {
 		super();
 	}
@@ -58,10 +60,17 @@ private static final long serialVersionUID = 1L;
 	public void setNbr_joueurs(int nbr_joueurs) {
 		this.nbr_joueurs = nbr_joueurs;
 	}
+	
+	public Blob getImage_equipe() {
+		return image_equipe;
+	}
+	public void setImage_equipe(Blob image_equipe) {
+		this.image_equipe = image_equipe;
+	}
 	@Override
 	public String toString() {
 		return "Equipe [id=" + id + ", nom_equipe=" + nom_equipe + ", pays=" + pays + ", nbr_joueurs=" + nbr_joueurs
-				+ "]";
+				+ ", image_equipe=" + image_equipe + "]";
 	}
 	
 	

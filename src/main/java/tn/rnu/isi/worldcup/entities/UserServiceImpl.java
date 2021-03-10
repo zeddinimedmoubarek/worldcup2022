@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import tn.rnu.isi.worldcup.entities.*;
 import tn.rnu.isi.worldcup.config.UserService;
 import tn.rnu.isi.worldcup.repository.*;
 
@@ -31,7 +29,7 @@ public class UserServiceImpl implements UserDetailsService, UserService{
 		if(user == null){
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),getAuthority(user));
 	}
 
 	private Set<SimpleGrantedAuthority> getAuthority(User user) {
@@ -70,7 +68,9 @@ public class UserServiceImpl implements UserDetailsService, UserService{
 	    User newUser = new User();
 	    newUser.setUsername(user.getUsername());
 	    newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-	
+	    newUser.setEmail(user.getEmail());
+	    newUser.setFirst_name(user.getFirst_name());
+	    newUser.setLast_name(user.getLast_name());
         return userDao.save(newUser);
     }
 }

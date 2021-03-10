@@ -18,9 +18,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import tn.rnu.isi.worldcup.entities.Role;
-
-
 
 
 @DynamicUpdate
@@ -37,7 +34,6 @@ public class User implements Serializable {
 	private String first_name;
 	private String last_name;
 	private String email;
-	@Column
     private String username;
     @Column
     @JsonIgnore
@@ -52,28 +48,33 @@ public class User implements Serializable {
 		super();
 	}
 	//Constructor
-	public User(Long id, String first_name, String last_name, String email ) {
-		super();
-		this.id = id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.email = email;
-	}
 	
-	public User(Long id, String first_name, String last_name, String email, String username, String password) {
+	
+
+	public User(Long id, String first_name, String last_name, String email, String username, String password,
+			Set<Role> roles) {
 		super();
 		this.id = id;
 		this.first_name = first_name;
 		this.last_name = last_name;
+		
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.roles = roles;
 	}
-	//Getters & Setters
-	 public Set<Role> getRoles() {
-	        return roles;
-	    }
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
+
+
+		//Getters & Setters
+		 public Set<Role> getRoles() {
+		        return roles;
+		    }
 	public String getFirst_name() {
 		return first_name;
 	}
@@ -107,11 +108,15 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	//toString
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email + "]";
+		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email
+				+ ", username=" + username + ", password=" + password + ", roles=" + roles + "]";
 	}
+	
+	
+	
 	
 
 	
