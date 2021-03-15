@@ -1,5 +1,6 @@
 package tn.rnu.isi.worldcup.entities;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,6 +38,7 @@ public class User implements Serializable {
 	private String first_name;
 	private String last_name;
 	private String email;
+	private Blob imageUser;
 	@Column
     private String username;
     @Column
@@ -111,6 +113,12 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email + "]";
+	}
+	public Blob getImageUser() {
+		return imageUser;
+	}
+	public void setImageUser(Blob imageUser) {
+		this.imageUser = imageUser;
 	}
 	
 
