@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -23,15 +25,21 @@ private static final long serialVersionUID = 1L;
 	private String nom;
 	private String prenom;
 	private Blob image_spec; // mahouch obligatoire 
+	
+	@ManyToOne
+	@JoinColumn(name ="matche_id", nullable = false)
+	private Matche matche;
+	
 	public Spectateur() {
 		super();
 	}
-	public Spectateur(Long id, String nom, String prenom, Blob image_spec) {
+	public Spectateur(Long id, String nom, String prenom, Blob image_spec, Matche matche) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.image_spec = image_spec;
+		this.matche = matche;
 	}
 	public Long getId() {
 		return id;
@@ -57,9 +65,16 @@ private static final long serialVersionUID = 1L;
 	public void setImage_spec(Blob image_spec) {
 		this.image_spec = image_spec;
 	}
+	public Matche getMatche() {
+		return matche;
+	}
+	public void setMatche(Matche matche) {
+		this.matche = matche;
+	}
 	@Override
 	public String toString() {
-		return "Spectateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", image_spec=" + image_spec + "]";
+		return "Spectateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", image_spec=" + image_spec
+				+ ", matche=" + matche + "]";
 	}
 	
 	

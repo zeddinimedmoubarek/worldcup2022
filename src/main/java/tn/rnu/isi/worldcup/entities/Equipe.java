@@ -2,12 +2,15 @@ package tn.rnu.isi.worldcup.entities;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,16 +29,28 @@ private static final long serialVersionUID = 1L;
 	private String pays;
 	private int nbr_joueurs;
 	private Blob image_equipe;
+	
+	@OneToOne(mappedBy = "equipe")
+	private Entraineur entraineur;
+	
+	@OneToMany(mappedBy = "equipe")
+	private Set<Joueur> joueurs;
+	
 	public Equipe() {
 		super();
 	}
-	public Equipe(Long id, String nom_equipe, String pays, int nbr_joueurs) {
+	public Equipe(Long id, String nom_equipe, String pays, int nbr_joueurs, Blob image_equipe, Entraineur entraineur,
+			Set<Joueur> joueurs) {
 		super();
 		this.id = id;
 		this.nom_equipe = nom_equipe;
 		this.pays = pays;
 		this.nbr_joueurs = nbr_joueurs;
+		this.image_equipe = image_equipe;
+		this.entraineur = entraineur;
+		this.joueurs = joueurs;
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -67,10 +82,22 @@ private static final long serialVersionUID = 1L;
 	public void setImage_equipe(Blob image_equipe) {
 		this.image_equipe = image_equipe;
 	}
+	public Entraineur getEntraineur() {
+		return entraineur;
+	}
+	public void setEntraineur(Entraineur entraineur) {
+		this.entraineur = entraineur;
+	}
+	public Set<Joueur> getJoueurs() {
+		return joueurs;
+	}
+	public void setJoueurs(Set<Joueur> joueurs) {
+		this.joueurs = joueurs;
+	}
 	@Override
 	public String toString() {
 		return "Equipe [id=" + id + ", nom_equipe=" + nom_equipe + ", pays=" + pays + ", nbr_joueurs=" + nbr_joueurs
-				+ ", image_equipe=" + image_equipe + "]";
+				+ ", image_equipe=" + image_equipe + ", entraineur=" + entraineur + ", joueurs=" + joueurs + "]";
 	}
 	
 	

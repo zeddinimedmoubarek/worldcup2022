@@ -2,12 +2,14 @@ package tn.rnu.isi.worldcup.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -25,17 +27,22 @@ public class Matche implements Serializable{
 		private Date date_match;
 		private int nbr_buts;
 		private int heure_match;
+		
+		@OneToMany(mappedBy = "matche")
+		private Set<Spectateur> spectateurs;
+		
 		//constructeur sans parametres
 		public Matche() {
 			super();
 		}
 		//constructeur avec tous les parametres
-		public Matche(Long id, Date date_match, int nbr_buts, int heure_match) {
+		public Matche(Long id, Date date_match, int nbr_buts, int heure_match, Set<Spectateur> spectateurs) {
 			super();
 			this.id = id;
 			this.date_match = date_match;
 			this.nbr_buts = nbr_buts;
 			this.heure_match = heure_match;
+			this.spectateurs = spectateurs;
 		}
 
 		//getters et setters
@@ -64,14 +71,16 @@ public class Matche implements Serializable{
 		public void setHeure_match(int heure_match) {
 			this.heure_match = heure_match;
 		}
+		public Set<Spectateur> getSpectateurs() {
+			return spectateurs;
+		}
+		public void setSpectateurs(Set<Spectateur> spectateurs) {
+			this.spectateurs = spectateurs;
+		}
 		//methode to string affichage de l'objet
 		@Override
 		public String toString() {
-			return "Match [id=" + id + ", date_match=" + date_match + ", nbr_buts=" + nbr_buts + ", heure_match="
-					+ heure_match + "]";
-		}
-		
-		
-		
-		
+			return "Matche [id=" + id + ", date_match=" + date_match + ", nbr_buts=" + nbr_buts + ", heure_match="
+					+ heure_match + ", spectateurs=" + spectateurs + "]";
+		}	
 }
