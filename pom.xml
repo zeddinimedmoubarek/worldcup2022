@@ -12,7 +12,7 @@
 	<artifactId>worldcup2022</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>worldcup2022</name>
-	<description>Demo project for Spring Boot</description>
+	<description>World Cup</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
