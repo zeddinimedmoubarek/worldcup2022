@@ -30,7 +30,8 @@ public class Matche implements Serializable{
 		
 		@OneToMany(mappedBy = "matche")
 		private Set<Spectateur> spectateurs;
-		
+		@OneToMany(mappedBy = "matche")
+		private Set<Ticket> tickets;
 		//constructeur sans parametres
 		public Matche() {
 			super();
