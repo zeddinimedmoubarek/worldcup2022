@@ -39,6 +39,9 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 	@OneToOne(mappedBy = "user")
 	private Panier panier;
+	@OneToMany(mappedBy = "user")
+	private Set<Ticket> tickets;
+
 	public User() {
 	}
 

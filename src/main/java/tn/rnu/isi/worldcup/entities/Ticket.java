@@ -30,6 +30,9 @@ public class Ticket implements Serializable {
 	@ManyToOne
     @JoinColumn(name="panierid")
     private Panier panier;
+	@ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 	public Long getId() {
 		return id;
 	}
