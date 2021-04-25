@@ -49,7 +49,8 @@ public class JoueurController {
             @PathVariable(value = "id") Long joueurId,@Valid @RequestBody  Joueur joueurDetails) throws ResourceNotFoundException {
     	Joueur joueur= joueurRepository.findById(joueurId).orElseThrow(() -> new ResourceNotFoundException("Joueur introuvable avec le code = " + joueurId));
         
-       joueur.setNom_joueur(joueurDetails.getNom_joueur());
+       joueur.setNomJoueur(joueurDetails.getNomJoueur());
+       joueur.setNomJoueur(joueurDetails.getPrenomJoueur());
        joueur.setEquipe(joueurDetails.getEquipe());
        joueur.setPosition(joueurDetails.getPosition());
        joueur.setImageJoueur(joueurDetails.getImageJoueur());

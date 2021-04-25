@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -22,16 +24,22 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "arbitreid")
 	private Long id;
 	private String nom_arbitre;
+	private String prenom_arbitre;
 	private Blob imageArbitre;
+	
+	@ManyToOne
+	@JoinColumn
+	private Matche matche;
 	
 	public Arbitre() {
 		super();
 	}
 
-	public Arbitre(Long id, String nom_arbitre, Blob imageArbitre) {
+	public Arbitre(Long id, String nom_arbitre,String prenom_arbitre, Blob imageArbitre) {
 		super();
 		this.id = id;
 		this.nom_arbitre = nom_arbitre;
+		this.prenom_arbitre = prenom_arbitre;
 		this.imageArbitre = imageArbitre;
 	}
 
@@ -46,11 +54,15 @@ private static final long serialVersionUID = 1L;
 	public String getNom_arbitre() {
 		return nom_arbitre;
 	}
-
+	public String getPrenom_arbitre() {
+		return prenom_arbitre;
+	}
 	public void setNom_arbitre(String nom_arbitre) {
 		this.nom_arbitre = nom_arbitre;
 	}
-
+	public void setPrenom_arbitre(String prenom_arbitre) {
+		this.prenom_arbitre = prenom_arbitre;
+	}
 	public Blob getImageArbitre() {
 		return imageArbitre;
 	}
@@ -61,7 +73,7 @@ private static final long serialVersionUID = 1L;
 
 	@Override
 	public String toString() {
-		return "Arbitre [id=" + id + ", nom_arbitre=" + nom_arbitre + ", imageArbitre=" + imageArbitre + "]";
+		return "Arbitre [id=" + id + ", nom_arbitre=" + nom_arbitre + ", prenom_arbitre=" + prenom_arbitre + ", imageArbitre=" + imageArbitre + "]";
 	}
 	
 }
