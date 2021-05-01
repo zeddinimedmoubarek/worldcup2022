@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,7 +28,6 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "equipeid")
 	private Long id;
 	private String nom_equipe;
-	private String pays;
 	private int nbr_joueurs;
 	private Blob image_equipe;
 	
@@ -36,19 +37,23 @@ private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy = "equipe")
 	private Set<Joueur> joueurs;
 	
+	@ManyToOne
+    @JoinColumn(name="pays_id")
+	private Pays pays;
+	
 	public Equipe() {
 		super();
 	}
-	public Equipe(Long id, String nom_equipe, String pays, int nbr_joueurs, Blob image_equipe, Entraineur entraineur,
-			Set<Joueur> joueurs) {
+	public Equipe(Long id, String nom_equipe, int nbr_joueurs, Blob image_equipe, Entraineur entraineur,
+			Set<Joueur> joueurs, Pays pays) {
 		super();
 		this.id = id;
 		this.nom_equipe = nom_equipe;
-		this.pays = pays;
 		this.nbr_joueurs = nbr_joueurs;
 		this.image_equipe = image_equipe;
 		this.entraineur = entraineur;
 		this.joueurs = joueurs;
+		this.pays = pays;
 	}
 
 	public Long getId() {
@@ -63,10 +68,10 @@ private static final long serialVersionUID = 1L;
 	public void setNom_equipe(String nom_equipe) {
 		this.nom_equipe = nom_equipe;
 	}
-	public String getPays() {
+	public Pays getPays() {
 		return pays;
 	}
-	public void setPays(String pays) {
+	public void setPays(Pays pays) {
 		this.pays = pays;
 	}
 	public int getNbr_joueurs() {

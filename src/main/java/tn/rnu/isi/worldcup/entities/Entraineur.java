@@ -23,6 +23,7 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "entraineurid")
 	private Long id;
 	private String nom_entraineur;
+	private String prenom_entraineur;
 	private Blob image_entraineur;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -33,10 +34,11 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Entraineur(Long id, String nom_entraineur, Blob image_entraineur, Equipe equipe) {
+	public Entraineur(Long id, String nom_entraineur,String prenom_entraineur, Blob image_entraineur, Equipe equipe) {
 		super();
 		this.id = id;
 		this.nom_entraineur = nom_entraineur;
+		this.prenom_entraineur = prenom_entraineur;
 		this.image_entraineur = image_entraineur;
 		this.equipe = equipe;
 	}
@@ -52,9 +54,14 @@ private static final long serialVersionUID = 1L;
 	public String getNom_entraineur() {
 		return nom_entraineur;
 	}
-
+	public String getPrenom_entraineur() {
+		return prenom_entraineur;
+	}
 	public void setNom_entraineur(String nom_entraineur) {
 		this.nom_entraineur = nom_entraineur;
+	}
+	public void setprenom_entraineur(String prenom_entraineur) {
+		this.prenom_entraineur = prenom_entraineur;
 	}
 
 	public Blob getImage_entraineur() {

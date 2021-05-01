@@ -24,12 +24,17 @@ public class Panier implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "panierid")
-	private Long id;
+	private Long id;	
+	
 	@OneToMany(mappedBy = "panier")
 	private Set<Ticket> tickets;
+	
+	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
+	
+
 	public Long getId() {
 		return id;
 	}

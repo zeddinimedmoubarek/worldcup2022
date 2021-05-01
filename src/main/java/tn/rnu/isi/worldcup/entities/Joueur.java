@@ -23,7 +23,9 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "joueurid")
 	private Long id;
-	private String nom_joueur;
+	private String nomJoueur;
+	private String prenomJoueur;
+
 	private String position;
 	private Blob imageJoueur;
 	
@@ -35,10 +37,11 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Joueur(Long id, String nom_joueur, String position, Blob imageJoueur, Equipe equipe) {
+	public Joueur(Long id, String nomJoueur,String prenomJoueur, String position, Blob imageJoueur, Equipe equipe) {
 		super();
 		this.id = id;
-		this.nom_joueur = nom_joueur;
+		this.nomJoueur = nomJoueur;
+		this.prenomJoueur = prenomJoueur;
 		this.position = position;
 		this.imageJoueur = imageJoueur;
 		this.equipe = equipe;
@@ -52,12 +55,21 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 
-	public String getNom_joueur() {
-		return nom_joueur;
+	public String getNomJoueur() {
+		return nomJoueur;
 	}
 
-	public void setNom_joueur(String nom_joueur) {
-		this.nom_joueur = nom_joueur;
+	
+	public String getPrenomJoueur() {
+		return prenomJoueur;
+	}
+
+	public void setPrenomJoueur(String prenomJoueur) {
+		this.prenomJoueur = prenomJoueur;
+	}
+
+	public void setNomJoueur(String nomJoueur) {
+		this.nomJoueur = nomJoueur;
 	}
 
 	public String getPosition() {
@@ -86,7 +98,7 @@ private static final long serialVersionUID = 1L;
 
 	@Override
 	public String toString() {
-		return "Joueur [id=" + id + ", nom_joueur=" + nom_joueur + ", position=" + position + ", imageJoueur="
+		return "Joueur [id=" + id + ", nomJoueur=" + nomJoueur + ", prenomJoueur=" + prenomJoueur +", position=" + position + ", imageJoueur="
 				+ imageJoueur + ", equipe=" + equipe + "]";
 	}
 }

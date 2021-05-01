@@ -52,6 +52,7 @@ public class ArbitreController {
             @PathVariable(value = "id") Long arbitreId,@Valid @RequestBody Arbitre arbitreDetails) throws ResourceNotFoundException {
         Arbitre arbitre = arbitreRepository.findById(arbitreId).orElseThrow(() -> new ResourceNotFoundException("Arbitre introuvable avec le code = " + arbitreId));
         arbitre.setNom_arbitre(arbitreDetails.getNom_arbitre());
+        arbitre.setPrenom_arbitre(arbitreDetails.getPrenom_arbitre());
         arbitre.setImageArbitre(arbitreDetails.getImageArbitre());
 
         final Arbitre updatedArbitre = arbitreRepository.save(arbitre);

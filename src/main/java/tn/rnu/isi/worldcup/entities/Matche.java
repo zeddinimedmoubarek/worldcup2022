@@ -25,25 +25,34 @@ public class Matche implements Serializable{
 		@Column(name = "matchid")
 		private Long id;
 		private Date date_match;
-		private int nbr_buts;
-		private int heure_match;
+		private String heure_match;
+		private Tournoi tournoi;
+		
 		
 		@OneToMany(mappedBy = "matche")
-		private Set<Spectateur> spectateurs;
-		@OneToMany(mappedBy = "matche")
 		private Set<Ticket> tickets;
+		
+		@OneToMany(mappedBy = "matche")		
+		private Set<User> users;
+		
+		@OneToMany(mappedBy = "matche")
+		private Set<Arbitre> arbitres;
+
 		//constructeur sans parametres
 		public Matche() {
 			super();
 		}
 		//constructeur avec tous les parametres
-		public Matche(Long id, Date date_match, int nbr_buts, int heure_match, Set<Spectateur> spectateurs) {
+		public Matche(Long id, Date date_match, String heure_match, Tournoi tournoi, Set<Ticket> tickets,
+				Set<User> users, Set<Arbitre> arbitres) {
 			super();
 			this.id = id;
 			this.date_match = date_match;
-			this.nbr_buts = nbr_buts;
 			this.heure_match = heure_match;
-			this.spectateurs = spectateurs;
+			this.tournoi = tournoi;
+			this.tickets = tickets;
+			this.users = users;
+			this.arbitres = arbitres;
 		}
 
 		//getters et setters
@@ -51,6 +60,7 @@ public class Matche implements Serializable{
 			return id;
 		}
 	
+		
 		public void setId(Long id) {
 			this.id = id;
 		}
@@ -60,28 +70,32 @@ public class Matche implements Serializable{
 		public void setDate_match(Date date_match) {
 			this.date_match = date_match;
 		}
-		public int getNbr_buts() {
-			return nbr_buts;
-		}
-		public void setNbr_buts(int nbr_buts) {
-			this.nbr_buts = nbr_buts;
-		}
-		public int getHeure_match() {
+		
+		public String getHeure_match() {
 			return heure_match;
 		}
-		public void setHeure_match(int heure_match) {
+		public void setHeure_match(String heure_match) {
 			this.heure_match = heure_match;
 		}
-		public Set<Spectateur> getSpectateurs() {
-			return spectateurs;
+		
+		public Tournoi getTournoi() {
+			return tournoi;
 		}
-		public void setSpectateurs(Set<Spectateur> spectateurs) {
-			this.spectateurs = spectateurs;
+		public void setTournoi(Tournoi tournoi) {
+			this.tournoi = tournoi;
 		}
+		
 		//methode to string affichage de l'objet
 		@Override
 		public String toString() {
-			return "Matche [id=" + id + ", date_match=" + date_match + ", nbr_buts=" + nbr_buts + ", heure_match="
-					+ heure_match + ", spectateurs=" + spectateurs + "]";
-		}	
+			return "Matche [id=" + id + ", date_match=" + date_match + ", heure_match=" + heure_match + ", tournoi="
+					+ tournoi + ", tickets=" + tickets + ", users=" + users + ", arbitres=" + arbitres + "]";
+		}
+		
+		
+		
+		
+		
+		
+		
 }

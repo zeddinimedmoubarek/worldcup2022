@@ -55,7 +55,7 @@ public class MatcheController {
         
        matche.setDate_match(matcheDetails.getDate_match());
        matche.setHeure_match(matcheDetails.getHeure_match());
-       matche.setNbr_buts(matcheDetails.getNbr_buts());
+       matche.setTournoi(matcheDetails.getTournoi());
         final Matche updatedMatche = matcheRepository.save(matche);
         return ResponseEntity.ok(updatedMatche);
     }

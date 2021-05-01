@@ -42,10 +42,32 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private Set<Ticket> tickets;
 
+	
+	@ManyToOne
+	@JoinColumn(name = "matchid")
+	private Matche matche;
+
+
 	public User() {
 	}
 
-	public User(String username, String email, String password) {
+	public User(Long id, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password, Set<Role> roles, Panier panier, Set<Ticket> tickets,
+			Matche matche) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+		this.panier = panier;
+		this.tickets = tickets;
+		this.matche = matche;
+	}
+	
+	public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password) {
+		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -89,6 +111,39 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+		
 	}
+
+	public Panier getPanier() {
+		return panier;
+	}
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
+
+	public Set<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(Set<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
+	public Matche getMatche() {
+		return matche;
+	}
+
+	public void setMatche(Matche matche) {
+		this.matche = matche;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", roles="
+				+ roles + ", panier=" + panier + ", tickets=" + tickets + ", matche=" + matche + "]";
+	}
+	
+	
 }
 
