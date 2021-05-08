@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class MatcheEquipePK implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	@Column(name = "matche_id")
     private Long matche_id;
 

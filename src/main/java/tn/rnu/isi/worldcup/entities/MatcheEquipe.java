@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MatcheEquipe")
 public class MatcheEquipe implements Serializable {
-	
+	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private MatcheEquipePK id;
 	

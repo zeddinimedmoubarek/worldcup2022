@@ -1,7 +1,7 @@
 package tn.rnu.isi.worldcup.entities;
 import java.io.Serializable;
-import java.sql.Blob;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -27,7 +28,9 @@ private static final long serialVersionUID = 1L;
 	private String prenomJoueur;
 
 	private String position;
-	private Blob imageJoueur;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "imageId")
+    private ImageModel imageJoueur;
 	
 	@ManyToOne
     @JoinColumn(name="equipe_id")
@@ -37,7 +40,7 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Joueur(Long id, String nomJoueur,String prenomJoueur, String position, Blob imageJoueur, Equipe equipe) {
+	public Joueur(Long id, String nomJoueur,String prenomJoueur, String position, ImageModel imageJoueur, Equipe equipe) {
 		super();
 		this.id = id;
 		this.nomJoueur = nomJoueur;
@@ -80,11 +83,11 @@ private static final long serialVersionUID = 1L;
 		this.position = position;
 	}
 
-	public Blob getImageJoueur() {
+	public ImageModel getImageJoueur() {
 		return imageJoueur;
 	}
 
-	public void setImageJoueur(Blob imageJoueur) {
+	public void setImageJoueur(ImageModel imageJoueur) {
 		this.imageJoueur = imageJoueur;
 	}
 

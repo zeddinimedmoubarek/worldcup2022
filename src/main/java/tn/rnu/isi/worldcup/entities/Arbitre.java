@@ -1,7 +1,7 @@
 package tn.rnu.isi.worldcup.entities;
 import java.io.Serializable;
-import java.sql.Blob;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -25,7 +26,9 @@ private static final long serialVersionUID = 1L;
 	private Long id;
 	private String nom_arbitre;
 	private String prenom_arbitre;
-	private Blob imageArbitre;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "imageId")
+    private ImageModel imageArbitre;
 	
 	@ManyToOne
 	@JoinColumn
@@ -35,7 +38,7 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Arbitre(Long id, String nom_arbitre,String prenom_arbitre, Blob imageArbitre) {
+	public Arbitre(Long id, String nom_arbitre,String prenom_arbitre, ImageModel imageArbitre) {
 		super();
 		this.id = id;
 		this.nom_arbitre = nom_arbitre;
@@ -63,11 +66,11 @@ private static final long serialVersionUID = 1L;
 	public void setPrenom_arbitre(String prenom_arbitre) {
 		this.prenom_arbitre = prenom_arbitre;
 	}
-	public Blob getImageArbitre() {
+	public ImageModel getImageArbitre() {
 		return imageArbitre;
 	}
 
-	public void setImageArbitre(Blob imageArbitre) {
+	public void setImageArbitre(ImageModel imageArbitre) {
 		this.imageArbitre = imageArbitre;
 	}
 

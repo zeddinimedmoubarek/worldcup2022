@@ -16,16 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import tn.rnu.isi.worldcup.entities.Matche;
 import tn.rnu.isi.worldcup.entities.MatcheEquipe;
 import tn.rnu.isi.worldcup.exception.ResourceNotFoundException;
 import tn.rnu.isi.worldcup.repository.MatcheEquipeRepository;
-
+import tn.rnu.isi.worldcup.repository.MatcheRepository;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class MatcheEquipeController {
 	@Autowired
     private MatcheEquipeRepository matcheEquipeRepository;
+	@Autowired
+	private MatcheRepository matchRepository;
     
 	//@PreAuthorize("hasRole('ADMIN')") // ki hachtik b admin bark ya3mlha
     @GetMapping("/matcheEquipes")
@@ -72,5 +74,7 @@ public class MatcheEquipeController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    
+  
     
 }

@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,7 +28,7 @@ public class Matche implements Serializable{
 		private Long id;
 		private Date date_match;
 		private String heure_match;
-		private Tournoi tournoi;
+		
 		
 		
 		@OneToMany(mappedBy = "matche")
@@ -37,30 +39,38 @@ public class Matche implements Serializable{
 		
 		@OneToMany(mappedBy = "matche")
 		private Set<Arbitre> arbitres;
+		
+		@ManyToOne
+	    @JoinColumn(name="tournoi_Id")
+		private Tournoi tournoi;
 
 		//constructeur sans parametres
 		public Matche() {
 			super();
 		}
 		//constructeur avec tous les parametres
-		public Matche(Long id, Date date_match, String heure_match, Tournoi tournoi, Set<Ticket> tickets,
-				Set<User> users, Set<Arbitre> arbitres) {
+		public Matche(Long id, Date date_match, String heure_match, Set<Ticket> tickets, Set<User> users,
+				Set<Arbitre> arbitres, Tournoi tournoi) {
 			super();
 			this.id = id;
 			this.date_match = date_match;
 			this.heure_match = heure_match;
-			this.tournoi = tournoi;
 			this.tickets = tickets;
 			this.users = users;
 			this.arbitres = arbitres;
+			this.tournoi = tournoi;
 		}
-
+		
+		public Matche(Long id, Date date_match, String heure_match) {
+			super();
+			this.id = id;
+			this.date_match = date_match;
+			this.heure_match = heure_match;
+		}
 		//getters et setters
 		public Long getId() {
 			return id;
 		}
-	
-		
 		public void setId(Long id) {
 			this.id = id;
 		}

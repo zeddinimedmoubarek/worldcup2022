@@ -1,6 +1,5 @@
 package tn.rnu.isi.worldcup.entities;
 import java.io.Serializable;
-import java.sql.Blob;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +23,9 @@ private static final long serialVersionUID = 1L;
 	private Long id;
 	private String nom_entraineur;
 	private String prenom_entraineur;
-	private Blob image_entraineur;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "imageId")
+    private ImageModel image_entraineur;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "equipe_id")
@@ -34,7 +35,7 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Entraineur(Long id, String nom_entraineur,String prenom_entraineur, Blob image_entraineur, Equipe equipe) {
+	public Entraineur(Long id, String nom_entraineur,String prenom_entraineur, ImageModel image_entraineur, Equipe equipe) {
 		super();
 		this.id = id;
 		this.nom_entraineur = nom_entraineur;
@@ -64,11 +65,11 @@ private static final long serialVersionUID = 1L;
 		this.prenom_entraineur = prenom_entraineur;
 	}
 
-	public Blob getImage_entraineur() {
+	public ImageModel getImage_entraineur() {
 		return image_entraineur;
 	}
 
-	public void setImage_entraineur(Blob image_entraineur) {
+	public void setImage_entraineur(ImageModel image_entraineur) {
 		this.image_entraineur = image_entraineur;
 	}
 

@@ -1,15 +1,17 @@
 package tn.rnu.isi.worldcup.entities;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -25,7 +27,9 @@ public class Pays implements Serializable{
 	@Column(name = "pays_id")
 	private Long id;
 	private String nomPays;
-	private Blob imagePays;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "imageId")
+    private ImageModel imagePays;
 	private Zone zone;
 	
 	@OneToMany(mappedBy = "pays")
@@ -40,7 +44,7 @@ public class Pays implements Serializable{
 
 
 
-	public Pays(Long id, String nomPays, Blob imagePays, Zone zone, Set<Equipe> equipes) {
+	public Pays(Long id, String nomPays, ImageModel imagePays, Zone zone, Set<Equipe> equipes) {
 		super();
 		this.id = id;
 		this.nomPays = nomPays;
@@ -75,13 +79,13 @@ public class Pays implements Serializable{
 
 
 
-	public Blob getImagePays() {
+	public ImageModel getImagePays() {
 		return imagePays;
 	}
 
 
 
-	public void setImagePays(Blob imagePays) {
+	public void setImagePays(ImageModel imagePays) {
 		this.imagePays = imagePays;
 	}
 
